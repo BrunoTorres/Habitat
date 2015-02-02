@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="433.0" minHeight="400.0" prefHeight="433.0" prefWidth="1073.0" stylesheets="@Habitat_Interface_CSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.uminho.lei.dss.view.Stock_Controller">
+    <children>
+      <Separator layoutX="258.0" layoutY="73.0" maxHeight="395.0" orientation="VERTICAL" prefHeight="363.0" prefWidth="11.0" snapToPixel="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="70.0" />
+      <Separator layoutX="250.0" layoutY="72.0" maxHeight="395.0" orientation="VERTICAL" prefHeight="363.0" prefWidth="11.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="70.0" />
+      <TabPane layoutX="253.0" layoutY="40.0" prefHeight="395.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="40.0">
+        <tabs>
+          <Tab text="Informações Material">
+            <content>
+              <AnchorPane maxHeight="300.0" minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="776.0">
+                     <children>
+                        <Separator layoutX="57.0" layoutY="28.0" prefHeight="4.0" prefWidth="702.0" AnchorPane.rightAnchor="14.0" />
+                        <Label layoutX="39.0" layoutY="19.0" text="Material" AnchorPane.leftAnchor="39.0" AnchorPane.topAnchor="19.0">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <GridPane layoutX="12.0" layoutY="38.0" prefHeight="260.0" prefWidth="776.0" AnchorPane.leftAnchor="12.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="78.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.0" minWidth="10.0" prefWidth="653.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="173.0" minHeight="10.0" prefHeight="173.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Nome" GridPane.halignment="RIGHT">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
+                              <Label prefHeight="15.0" prefWidth="66.0" text="Quantidade" textAlignment="JUSTIFY" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
+                              <TextField fx:id="tfNome" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="tfQuantidade" maxWidth="75.0" prefHeight="26.0" prefWidth="26.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <TabPane fx:id="tabpaneStock" layoutY="40.0" prefHeight="395.0" prefWidth="253.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="40.0">
+        <tabs>
+          <Tab fx:id="tabDisponivel" text="Disponível">
+               <content>
+                  <TableView fx:id="tableStockDisp" onMouseClicked="#tableStickDispOnClick" prefHeight="355.0" prefWidth="249.0">
+                    <columns>
+                      <TableColumn fx:id="tcStockDispNome" minWidth="0.0" prefWidth="166.0" text="Material" />
+                        <TableColumn fx:id="tcStockDispQuantidade" prefWidth="87.0" text="Quantidade" />
+                    </columns>
+                  </TableView>
+               </content>
+            </Tab>
+            <Tab fx:id="tabIndisponivel" text="Indisponível">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableStockIndisp" onMouseClicked="#tableStickIndispOnClick" prefHeight="363.0" prefWidth="253.0">
+                          <columns>
+                            <TableColumn fx:id="tcStockIndispNome" prefWidth="258.0" text="Material" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <ToolBar layoutX="818.0" prefHeight="46.0" prefWidth="253.0">
+         <items>
+            <TextField fx:id="textProcura" prefHeight="25.0" prefWidth="190.0" />
+            <Button fx:id="okProcura" mnemonicParsing="false" onMouseClicked="#procuraStock" styleClass="button_search_bar" stylesheets="@Habitat_Interface_CSS.css" />
+         </items>
+      </ToolBar>
+      <ToolBar prefHeight="42.0" prefWidth="818.0">
+        <items>
+          <Button fx:id="bStockAdd" minWidth="97.0" mnemonicParsing="false" onMouseClicked="#bStockAddOnClick" prefHeight="34.0" prefWidth="100.0" styleClass="button_candidatura_add" stylesheets="@Habitat_Interface_CSS.css" text="Adicionar">
+               <font>
+                  <Font size="11.0" />
+               </font></Button>
+            <Button fx:id="bStockEdit" mnemonicParsing="false" onMouseClicked="#bStockEditOnClick" prefHeight="34.0" prefWidth="100.0" styleClass="button_candidatura_rem" stylesheets="@Habitat_Interface_CSS.css" text="Editar">
+               <font>
+                  <Font size="11.0" />
+               </font></Button>
+            <Button fx:id="bStockRem" mnemonicParsing="false" onMouseClicked="#bStockRemOnClick" prefWidth="100.0" styleClass="button_candidatura_rem" stylesheets="@Habitat_Interface_CSS.css" text="Remover">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="bStockSave" mnemonicParsing="false" onMouseClicked="#bStockSaveOnClick" prefWidth="100.0" styleClass="button_candidatura_save" stylesheets="@Habitat_Interface_CSS.css" text="Guardar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="bStockCancelar" mnemonicParsing="false" onMouseClicked="#bStockCancelarOnClick" prefWidth="100.0" styleClass="button_cancelar2" stylesheets="@Habitat_Interface_CSS.css" text="Cancelar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+        </items>
+      </ToolBar>
+    </children>
+</AnchorPane>

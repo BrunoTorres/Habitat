@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1071.0" stylesheets="@Habitat_Interface_CSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.uminho.lei.dss.view.Funcionarios_Controller">
+    <children>
+      <ToolBar layoutX="818.0" prefHeight="46.0" prefWidth="253.0" AnchorPane.rightAnchor="0.0">
+         <items>
+            <TextField fx:id="tfProcura" prefHeight="25.0" prefWidth="190.0" />
+            <Button fx:id="okProcuraButton" mnemonicParsing="false" onMouseClicked="#procuraFuncionario" styleClass="button_search_bar" stylesheets="@Habitat_Interface_CSS.css" />
+         </items>
+      </ToolBar>
+      <ToolBar prefHeight="46.0" prefWidth="818.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="253.0">
+        <items>
+          <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#addFuncionariosOnClick" prefWidth="100.0" styleClass="button_candidatura_add" stylesheets="@Habitat_Interface_CSS.css" text="Adicionar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Button>
+            <Button fx:id="editButton" mnemonicParsing="false" onMouseClicked="#editFuncionariosOnClick" prefWidth="100.0" styleClass="button_candidatura_edit" stylesheets="@Habitat_Interface_CSS.css" text="Editar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Button>
+            <Button fx:id="remButton" mnemonicParsing="false" onMouseClicked="#remFuncionariosOnClick" prefWidth="100.0" styleClass="button_candidatura_rem" stylesheets="@Habitat_Interface_CSS.css" text="Remover">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="saveButton" mnemonicParsing="false" onMouseClicked="#saveFuncionariosOnClick" prefWidth="100.0" styleClass="button_candidatura_save" stylesheets="@Habitat_Interface_CSS.css" text="Guardar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onMouseClicked="#cancelFuncionariosOnClick" prefWidth="100.0" styleClass="button_cancelar2" stylesheets="@Habitat_Interface_CSS.css" text="Cancelar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+        </items>
+      </ToolBar>
+      <SplitPane dividerPositions="0.2806361085126286" layoutX="106.0" layoutY="44.0" prefHeight="655.0" prefWidth="1071.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane prefHeight="660.0" prefWidth="234.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab text="Lista de Funcionarios">
+                           <content>
+                              <TableView fx:id="tableFuncionarios" editable="true" onMouseClicked="#tableFuncionariosOnClick" prefHeight="595.0" prefWidth="253.0">
+                                 <columns>
+                                    <TableColumn fx:id="tcUserName" editable="false" prefWidth="100.0" text="Username" />
+                                    <TableColumn fx:id="tcPermissoes" minWidth="30.0" prefWidth="99.0" text="Permissões" />
+                                    <TableColumn fx:id="tcEstado" prefWidth="57.0" text="Estado" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane prefHeight="660.0" prefWidth="810.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab text="Informações">
+                           <content>
+                              <AnchorPane fx:id="labelOpcaoCasa" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="850.0">
+                                 <children>
+                                    <Separator layoutX="54.0" layoutY="25.0" prefHeight="7.0" prefWidth="481.0" AnchorPane.rightAnchor="211.0" />
+                                    <Label layoutX="14.0" layoutY="19.0" text="Geral" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="19.0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="comboAtivo" layoutX="557.0" layoutY="14.0" prefWidth="150.0" stylesheets="@Habitat_Interface_CSS.css">
+                                       <styleClass>
+                                          <String fx:value="comboFocus" />
+                                          <String fx:value="comboFocusOut" />
+                                          <String fx:value="comboTextField" />
+                                       </styleClass>
+                                    </ComboBox>
+                                    <Circle fx:id="circuloEstado" fill="#21ff23" layoutX="723.0" layoutY="27.0" radius="9.0" smooth="false" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.4" />
+                                    <Pane layoutY="67.0" prefHeight="420.0" prefWidth="746.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <children>
+                                          <GridPane layoutX="3.0" layoutY="6.0" prefHeight="405.0" prefWidth="737.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="6.0">
+                                             <children>
+                                                <Label text="Nome" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="15.0" prefWidth="59.0" text="UserName" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Morada" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Salário" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Codigo Postal" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="tfNome" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfUserName" maxWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfPass" maxWidth="245.0" prefHeight="26.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="365.0" right="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <DatePicker fx:id="tfData" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </DatePicker>
+                                                <TextField fx:id="tfMorada" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" right="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfCodpostal" maxWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfLocalidade" maxWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                                   <GridPane.margin>
+                                                      <Insets left="365.0" right="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfEmail" maxWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfTel" layoutX="556.0" layoutY="116.0" maxWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                                   <GridPane.margin>
+                                                      <Insets left="365.0" right="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfSalario" maxWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tfNif" maxWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                                   <GridPane.margin>
+                                                      <Insets left="365.0" right="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <Label text="Password" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="303.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <Label text="Localidade" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="292.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <Label text="Nif" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="330.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <Label prefHeight="15.0" prefWidth="49.0" text="Telefone" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="303.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <Label text="Data Nascimento" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                                <Label text="Permissão" GridPane.halignment="RIGHT" />
+                                                <Label text="Ultm.Login" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="291.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <TextField fx:id="tfLastLogin" maxWidth="245.0" prefHeight="26.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets left="365.0" right="10.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <ComboBox fx:id="comboEstado" minWidth="265.0" prefWidth="150.0" stylesheets="@Habitat_Interface_CSS.css" GridPane.columnIndex="1">
+                                                   <styleClass>
+                                                      <String fx:value="comboFocus" />
+                                                      <String fx:value="comboFocusOut" />
+                                                      <String fx:value="comboTextField" />
+                                                   </styleClass>
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin>
+                                                </ComboBox>
+                                             </children>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="122.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="685.0" minWidth="10.0" prefWidth="615.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+    </children>
+</AnchorPane>

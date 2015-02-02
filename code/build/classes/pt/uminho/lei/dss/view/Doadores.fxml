@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="701.0" prefWidth="1100.0" stylesheets="@Habitat_Interface_CSS.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.uminho.lei.dss.view.Doadores_Controller">
+    <children>
+      <ToolBar layoutX="818.0" prefHeight="46.0" prefWidth="253.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <TextField fx:id="textDoador" onMouseClicked="#procuraDoador" prefHeight="25.0" prefWidth="190.0" styleClass="search-box" stylesheets="@Habitat_Interface_CSS.css" />
+            <Button fx:id="procuraButton" mnemonicParsing="false" onMouseClicked="#procuraDoador" stylesheets="@Habitat_Interface_CSS.css">
+               <styleClass>
+                  <String fx:value="button_search_bar" />
+                  <String fx:value="search-box" />
+               </styleClass></Button>
+         </items>
+      </ToolBar>
+      <ToolBar prefHeight="46.0" prefWidth="565.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="253.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <Button fx:id="bDoadoresAdd" mnemonicParsing="false" onMouseClicked="#bDoadoresAddOnClick" prefWidth="100.0" styleClass="button_candidatura_add" stylesheets="@Habitat_Interface_CSS.css" text="Adicionar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Button>
+            <Button fx:id="bDoadoresEdit" mnemonicParsing="false" onMouseClicked="#bDoadoresEditOnClick" prefWidth="100.0" styleClass="button_candidatura_rem" stylesheets="@Habitat_Interface_CSS.css" text="Editar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Button>
+            <Button fx:id="bDoadoresRem" mnemonicParsing="false" onMouseClicked="#bDoadoresRemOnClick" prefWidth="100.0" styleClass="button_candidatura_rem" stylesheets="@Habitat_Interface_CSS.css" text="Remover">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="bDoadoresSave" mnemonicParsing="false" onMouseClicked="#bDoadoresSaveOnClick" prefWidth="100.0" styleClass="button_candidatura_save" stylesheets="@Habitat_Interface_CSS.css" text="Guardar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="bDoadoresCancelar" mnemonicParsing="false" onMouseClicked="#bDoadoresCancelarOnClick" prefWidth="100.0" styleClass="button_cancelar2" stylesheets="@Habitat_Interface_CSS.css" text="Cancelar">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+        </items>
+      </ToolBar>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="8.0" layoutY="46.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane fx:id="tabpaneDoadores" layoutX="-55.0" layoutY="-300.0" prefHeight="660.0" prefWidth="253.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab text="Lista de Doadores">
+                           <content>
+                              <TableView fx:id="tableDoadores" editable="true" onMouseClicked="#tableDoadoresOnClick" prefHeight="595.0" prefWidth="253.0">
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <columns>
+                                    <TableColumn fx:id="tcFirstName" editable="false" prefWidth="91.0" text="Primeiro Nome" />
+                                    <TableColumn fx:id="tcLastName" editable="false" prefWidth="78.0" text="Último Nome" />
+                                    <TableColumn fx:id="tcEmpresa" maxWidth="100.0" minWidth="50.0" prefWidth="20.0" text="Emp" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane fx:id="tabpaneAux" prefHeight="660.0" prefWidth="810.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <tabs>
+                        <Tab fx:id="tabInfo" closable="false" text="Informações Pessoais">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="850.0">
+                                 <children>
+                                    <Separator layoutX="57.0" layoutY="28.0" prefHeight="2.0" prefWidth="685.0" AnchorPane.rightAnchor="14.0" />
+                                    <Label layoutX="14.0" layoutY="19.0" text="Geral" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="19.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="53.0" layoutY="516.0" prefHeight="2.0" prefWidth="643.0" AnchorPane.rightAnchor="72.0" />
+                                    <Pane layoutX="1.0" layoutY="75.0" prefHeight="363.0" prefWidth="746.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <children>
+                                          <GridPane layoutX="1.0" layoutY="-14.0" prefHeight="363.0" prefWidth="740.0" AnchorPane.leftAnchor="26.0">
+                                             <children>
+                                                <Label text="Nome" GridPane.halignment="RIGHT">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="15.0" prefWidth="28.0" text="Tipo" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Morada" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Responsável" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Codigo Postal" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="tf_nome" editable="false" GridPane.columnIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tf_morada" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tf_responsavel" editable="false" maxWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tf_telefone" editable="false" maxWidth="245.0" prefHeight="26.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                                   <GridPane.margin>
+                                                      <Insets left="365.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tf_codpostal" editable="false" maxWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tf_nif" editable="false" maxWidth="265.0" prefHeight="25.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <TextField fx:id="tf_email" editable="false" maxWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <Label text="Telefone" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="330.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <Label text="NIF" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <Label text="Contacto" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="328.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <TextField fx:id="tf_respcontacto" editable="false" maxWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                                   <GridPane.margin>
+                                                      <Insets left="365.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <ComboBox fx:id="combo_tipo" maxWidth="265.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <styleClass>
+                                                      <String fx:value="comboFocus" />
+                                                      <String fx:value="comboTextField" />
+                                                      <String fx:value="comboFocusOut" />
+                                                   </styleClass>
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                </ComboBox>
+                                                <Label text="Localidade" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="318.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <TextField fx:id="tfLocal" editable="false" maxWidth="245.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                                   <GridPane.margin>
+                                                      <Insets left="365.0" />
+                                                   </GridPane.margin>
+                                                </TextField>
+                                                <Label text="Atividade" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                                                <ComboBox fx:id="cbAtividade" prefHeight="29.0" prefWidth="265.0" promptText="Atividade" stylesheets="@Habitat_Interface_CSS.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                                   <GridPane.margin>
+                                                      <Insets left="20.0" />
+                                                   </GridPane.margin>
+                                                   <styleClass>
+                                                      <String fx:value="comboTextField" />
+                                                      <String fx:value="comboFocusOut" />
+                                                      <String fx:value="comboFocus" />
+                                                   </styleClass>
+                                                </ComboBox>
+                                             </children>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="127.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.0" minWidth="10.0" prefWidth="641.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                          </GridPane>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab fx:id="tabDoacoes2" text="Doações">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="23.0" layoutY="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="19.0">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator layoutX="75.0" layoutY="28.0" prefHeight="3.0" prefWidth="721.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="14.0" />
+                                    <TableView fx:id="tabDoacoes" layoutX="40.0" layoutY="49.0" prefHeight="527.0" prefWidth="740.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                       <columns>
+                                          <TableColumn fx:id="tc_dataDoacao" prefWidth="189.0" text="Data" />
+                                          <TableColumn fx:id="tc_tipoDoacao" prefWidth="196.0" text="Tipo" />
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="addDoacaoButton" layoutX="40.0" layoutY="586.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#addDoacao" prefHeight="25.0" prefWidth="25.0" styleClass="button_candidatura_add" stylesheets="@Habitat_Interface_CSS.css" />
+                                    <Label layoutX="36.0" layoutY="19.0" text="Doações" AnchorPane.leftAnchor="14.0">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="bDoacaoRem" layoutX="108.0" layoutY="587.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button_candidatura_rem" stylesheets="@Habitat_Interface_CSS.css" />
+                                    <Button fx:id="bDoacaoEdit" layoutX="74.0" layoutY="586.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button_candidatura_edit" stylesheets="@Habitat_Interface_CSS.css" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+    </children>
+</AnchorPane>
